@@ -9,10 +9,8 @@ datasource db {
 
 model User {
   id         String    @id @default(uuid())
-  email      String    @unique
   password   String
   username   String    @unique
-  createdAt  DateTime  @default(now())
   posts      Post[]
   comments   Comment[]
   likes      Like[]
@@ -22,8 +20,7 @@ model Post {
   id         String    @id @default(uuid())
   title      String
   content    String
-  published  Boolean   @default(true)
-  createdAt  DateTime  @default(now()) 
+  createdAt  DateTime  @default(now())
   author     User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId   String
   comments   Comment[]
@@ -42,7 +39,6 @@ model Comment {
 
 model Like {
   id        String    @id @default(uuid())
-  createdAt DateTime  @default(now())
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)

@@ -1,0 +1,15 @@
+type Like {
+  id: ID!
+  user: User!
+  post: Post!
+}
+
+extend type Query {
+  likesByPost(postId: ID!): [Like!]!
+  likesByUser(userId: ID!): [Like!]!
+}
+
+extend type Mutation {
+  likePost(postId: ID!): Like!
+  unlikePost(postId: ID!): Boolean!
+}
