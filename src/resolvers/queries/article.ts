@@ -1,9 +1,17 @@
 import { QueryResolvers } from "../../types.js";
 
-export const articles: QueryResolvers["articles"] = async (_, __, { dataSources, user }) => {
-    if (!user) {
-      throw new Error("Unauthorized");
-    }
+export const article: QueryResolvers["article"] = async (_, { id }, { dataSources, user }) => {
+  if (!user) {
+    throw new Error("Unauthorized");
+  }
 
-    return dataSources.db.article.findMany();
-}
+  const found = await dataSources.db.article.findUnique({
+    where: { id },
+  });
+
+  if (!found) {
+    throw new Error("Article not found");
+  }
+
+  return found;
+};
