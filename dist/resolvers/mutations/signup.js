@@ -14,13 +14,14 @@ export const signup = async (_, { name, password }, { dataSources }) => {
         const token = createJWT(createdUser);
         return {
             message: 'User created',
+            success: true,
             token: token,
         };
     }
     catch (e) {
         return {
             message: e.message,
-            token: null
+            success: false,
         };
     }
 };

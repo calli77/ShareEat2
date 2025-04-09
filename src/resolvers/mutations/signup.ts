@@ -20,12 +20,13 @@ export const signup: MutationResolvers['signup'] = async (_, {name, password}, {
 
     return {
       message: 'User created',
+      success: true,
       token: token,
     }
   } catch (e) {
     return {
       message: (e as Error).message,
-      token: null
+      success: false,
     }
   }
 

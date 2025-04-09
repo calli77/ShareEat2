@@ -12,13 +12,14 @@ export const login = async (_, { name, password }, { dataSources }) => {
         const token = createJWT(findUser);
         return {
             message: 'User find',
+            success: true,
             token: token
         };
     }
     catch (e) {
         return {
             message: e.message,
-            token: null,
+            success: false,
         };
     }
 };

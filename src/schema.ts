@@ -33,6 +33,7 @@ export const typeDefs = gql`
 
   type Response {
     message: String!
+    success: Boolean!
     token: String
   }
 
@@ -50,7 +51,7 @@ export const typeDefs = gql`
     signup(name: String!, password: String!): Response!
     login(name: String!, password: String!): Response!
 
-    createArticle(title: String!, content: String!): Article!
+    createArticle(title: String!, content: String!): Response!
     updateArticle(id: ID!, title: String, content: String): Article!
     deleteArticle(id: ID!): Boolean!
 

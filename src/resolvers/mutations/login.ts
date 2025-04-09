@@ -17,12 +17,13 @@ export const login: MutationResolvers['login'] = async (_, {name, password}, {da
 
     return {
       message: 'User find',
+      success: true,
       token: token
     }
   } catch (e) {
     return {
       message: (e as Error).message,
-      token: null,
+      success: false,
     }
   }
 
