@@ -55,7 +55,7 @@ export const typeDefs = gql`
     updateArticle(id: ID!, title: String, content: String): Article!
     deleteArticle(id: ID!): Boolean!
 
-    addComment(articleId: ID!, content: String!): Comment!
+    addComment(articleId: ID!, content: String!): Response!
 
     likeArticle(articleId: ID!): Like!
     unlikeArticle(articleId: ID!): Boolean!

@@ -45,7 +45,7 @@ export type Like = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addComment: Comment;
+  addComment: Response;
   createArticle: Response;
   deleteArticle: Scalars['Boolean']['output'];
   likeArticle: Like;
@@ -257,7 +257,7 @@ export type LikeResolvers<ContextType = DataSourceContext, ParentType extends Re
 };
 
 export type MutationResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  addComment?: Resolver<ResolversTypes['Comment'], ParentType, ContextType, RequireFields<MutationAddCommentArgs, 'articleId' | 'content'>>;
+  addComment?: Resolver<ResolversTypes['Response'], ParentType, ContextType, RequireFields<MutationAddCommentArgs, 'articleId' | 'content'>>;
   createArticle?: Resolver<ResolversTypes['Response'], ParentType, ContextType, RequireFields<MutationCreateArticleArgs, 'content' | 'title'>>;
   deleteArticle?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationDeleteArticleArgs, 'id'>>;
   likeArticle?: Resolver<ResolversTypes['Like'], ParentType, ContextType, RequireFields<MutationLikeArticleArgs, 'articleId'>>;
