@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+dist/
+build/
+*.tsbuildinfo
+
+# Environnement
+.env
+.env.local
+.env.*.local
+
+# IDE / éditeur
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Système
+.DS_Store
+Thumbs.db
