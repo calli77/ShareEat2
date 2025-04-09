@@ -8,34 +8,38 @@ export const postResolvers: Resolvers = {
         where: { id: String(id) },
       });
     },
-    posts: async (_, { orderBy }, { prisma }) => {
-      let orderByClause = {};
+    // posts: async (_, { orderBy }, { prisma }) => {
+    //   let orderByClause = {};
       
-      if (orderBy) {
-        if (orderBy.createdAt) {
-          orderByClause = { createdAt: orderBy.createdAt };
-        } else if (orderBy.likesCount) {
-          const posts = await prisma.post.findMany({
-            include: {
-              _count: {
-                select: { likes: true },
-              },
-            },
-          });
+    //   if (orderBy) {
+    //     if (orderBy.createdAt) {
+    //       orderByClause = { createdAt: orderBy.createdAt };
+    //     } else if (orderBy.likesCount) {
+    //       const posts = await prisma.post.findMany({
+    //         include: {
+    //           _count: {
+    //             select: { likes: true },
+    //           },
+    //         },
+    //       });
           
-          return posts.sort((a, b) => {
-            if (orderBy.likesCount === 'asc') {
-              return a._count.likes - b._count.likes;
-            } else {
-              return b._count.likes - a._count.likes;
-            }
-          });
-        }
-      }
+    //       return posts.sort((a, b) => {
+    //         if (orderBy.likesCount === 'asc') {
+    //           return a._count.likes - b._count.likes;
+    //         } else {
+    //           return b._count.likes - a._count.likes;
+    //         }
+    //       });
+    //     }
+    //   }
       
-      return prisma.post.findMany({
-        orderBy: orderByClause,
-      });
+    //   return prisma.post.findMany({
+    //     orderBy: orderByClause,
+    //   });
+    // },
+    posts: async (_, __, { prisma }) => {
+      // Simplement renvoyer tous les posts sans tri
+      return prisma.post.findMany();
     },
     postsByUser: async (_, { userId }, { prisma }) => {
       return prisma.post.findMany({

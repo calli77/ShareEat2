@@ -21,7 +21,7 @@ input UpdatePostInput {
 
 extend type Query {
   post(id: ID!): Post
-  posts(): [Post!]!
+  posts: [Post!]!
   postsByUser(userId: ID!): [Post!]!
 }
 
