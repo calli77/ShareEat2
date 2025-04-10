@@ -1,0 +1,70 @@
+fragment PostFields on Post {
+  id
+  title
+  content
+  createdAt
+  likesCount
+  author {
+    id
+    username
+  }
+  comments {
+    id
+  }
+  likes {
+    id
+    user {
+      id
+    }
+  }
+}
+
+query GetPosts {
+  posts {
+    ...PostFields
+  }
+}
+
+query GetPost($id: ID!) {
+  post(id: $id) {
+    ...PostFields
+    comments {
+      id
+      content
+      createdAt
+      author {
+        id
+        username
+      }
+    }
+    likes {
+      id
+      user {
+        id
+        username
+      }
+    }
+  }
+}
+
+query GetPostsByUser($userId: ID!) {
+  postsByUser(userId: $userId) {
+    ...PostFields
+  }
+}
+
+mutation CreatePost($input: CreatePostInput!) {
+  createPost(input: $input) {
+    ...PostFields
+  }
+}
+
+mutation UpdatePost($id: ID!, $input: UpdatePostInput!) {
+  updatePost(id: $id, input: $input) {
+    ...PostFields
+  }
+}
+
+mutation DeletePost($id: ID!) {
+  deletePost(id: $id)
+}

@@ -1,0 +1,33 @@
+fragment LikeFields on Like {
+  id
+  user {
+    id
+    username
+  }
+}
+
+query GetLikesByPost($postId: ID!) {
+  likesByPost(postId: $postId) {
+    ...LikeFields
+  }
+}
+
+query GetLikesByUser($userId: ID!) {
+  likesByUser(userId: $userId) {
+    ...LikeFields
+    post {
+      id
+      title
+    }
+  }
+}
+
+mutation LikePost($postId: ID!) {
+  likePost(postId: $postId) {
+    ...LikeFields
+  }
+}
+
+mutation UnlikePost($postId: ID!) {
+  unlikePost(postId: $postId)
+}

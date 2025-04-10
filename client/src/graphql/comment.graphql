@@ -1,0 +1,31 @@
+fragment CommentFields on Comment {
+  id
+  content
+  createdAt
+  author {
+    id
+    username
+  }
+}
+
+query GetCommentsByPost($postId: ID!) {
+  commentsByPost(postId: $postId) {
+    ...CommentFields
+  }
+}
+
+mutation CreateComment($input: CreateCommentInput!) {
+  createComment(input: $input) {
+    ...CommentFields
+  }
+}
+
+mutation UpdateComment($id: ID!, $input: UpdateCommentInput!) {
+  updateComment(id: $id, input: $input) {
+    ...CommentFields
+  }
+}
+
+mutation DeleteComment($id: ID!) {
+  deleteComment(id: $id)
+}
