@@ -1,36 +1,94 @@
-# ShareEat - Réseau Social
+# ShareEat - Backend GraphQL
 
-## Description du projet
+## Description
 
-ShareEat est une plateforme de réseau social permettant aux utilisateurs de partager le fond de leur penser et leur expériences. Ce projet monorepo contient à la fois le serveur backend (GraphQL/Prisma) et le client frontend (React/Apollo).
+Ce dossier contient le backend GraphQL de l'application ShareEat. Il s'agit d'une API GraphQL construite avec Apollo Server, utilisant Prisma comme ORM pour communiquer avec une base de données PostgreSQL.
 
-## Fonctionnalités principales
+## Technologies utilisées
 
-- **Authentification utilisateur** : Inscription, connexion et gestion de sessions avec JWT
-- **Publication de contenus** : Création, modification et suppression de posts
-- **Interactions sociales** : Commentaires et likes sur les publications
-- **Profils utilisateurs** : Affichage des posts par utilisateur
+- **Apollo Server** : Serveur GraphQL
+- **Prisma** : ORM (Object-Relational Mapping)
+- **PostgreSQL** : Base de données relationnelle
+- **TypeScript** : Superset typé de JavaScript
+- **JWT** : JSON Web Tokens pour l'authentification
+- **GraphQL Codegen** : Génération automatique de types TypeScript depuis le schéma GraphQL
+
+## Prérequis
+
+- Node.js (v14 ou supérieur)
+- npm ou yarn
+- PostgreSQL (installé et en cours d'exécution)
+
+## Installation
+
+1. Installez les dépendances :
+   ```bash
+   npm install
+   ```
+   
+3. Modifiez ou créz le fichier `.env` avec vos informations de connexion à la base de données :
+   ```
+   JWT_SECRET="votre_clé_secrète_pour_jwt"
+   ```
+   
+4. Générez le client Prisma :
+   ```bash
+   npx prisma generate
+   ```
+
+6. Générez les types GraphQL :
+   ```bash
+   npx graphql-codegen
+   ```
+
+## Démarrage
+
+- **Prisma Studio** : Interface d'administration pour la base de données
+  ```bash
+  npx prisma studio
+  ```
+
+### Mode développement
+
+```bash
+npm run dev
+# ou
+yarn dev
+```
+
+Le serveur démarrera à l'adresse `http://localhost:4000/graphql`.
+
+### Démarrer le serveur
+
+```bash
+npm run start
+```
 
 ## Structure du projet
 
-- `server/` - Backend GraphQL avec Apollo Server, Prisma et PostgreSQL
-- `client/` - Frontend React avec Apollo Client et Tailwind CSS
+- `prisma/` - Configuration Prisma et migrations
+  - `schema.prisma` - Schéma de la base de données
+  - `migrations/` - Migrations Prisma
 
-## Guide de démarrage rapide
+- `src/` - Code source
+  - `index.ts` - Point d'entrée de l'application
+  - `schema.ts` - Schéma GraphQL exécutable
+  - `context.ts` - Contexte Apollo Server (Prisma, authentification)
+  
+  - `auth/` - Logique d'authentification
+    - `auth.utils.ts` - Utilitaires JWT et hash de mot de passe
+    - `auth.resolvers.ts` - Résolveurs pour l'authentification
+  
+  - `typeDefs/` - Définitions de types GraphQL
+    - `user.graphql` - Types liés aux utilisateurs
+    - `post.graphql` - Types liés aux posts
+    - `comment.graphql` - Types liés aux commentaires
+    - `like.graphql` - Types liés aux likes
+  
+  - `resolvers/` - Résolveurs GraphQL
+    - `user.resolvers.ts` - Résolveurs pour les utilisateurs
+    - `post.resolvers.ts` - Résolveurs pour les posts
+    - `comment.resolvers.ts` - Résolveurs pour les commentaires
+    - `like.resolvers.ts` - Résolveurs pour les likes
 
-### Installation et configuration
-
-1. Clonez ce dépôt :
-```bash
-git clone https://github.com/calli77/ShareEat2.git
-cd shareeat
-```
-
-2. Suivez les instructions d'installation détaillées dans chaque dossier :
-   - [Instructions pour le serveur](./server/README.md)
-   - [Instructions pour le client](./client/README.md)
-
-## Auteurs
-
-- Calliclès Bazolo
-- Florent Lelion
+## Outils de développement
