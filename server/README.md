@@ -33,8 +33,4 @@ cd shareeat
 ## Auteurs
 
 - Calliclès Bazolo
-<<<<<<< HEAD
 - Florent Lelion
-=======
-- Florent Lelion
->>>>>>> 2f6a791 (ajout readme serveur)
