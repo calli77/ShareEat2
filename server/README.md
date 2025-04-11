@@ -13,12 +13,6 @@ Ce dossier contient le backend GraphQL de l'application ShareEat. Il s'agit d'un
 - **JWT** : JSON Web Tokens pour l'authentification
 - **GraphQL Codegen** : Génération automatique de types TypeScript depuis le schéma GraphQL
 
-## Prérequis
-
-- Node.js (v14 ou supérieur)
-- npm ou yarn
-- PostgreSQL (installé et en cours d'exécution)
-
 ## Installation
 
 1. Installez les dépendances :
